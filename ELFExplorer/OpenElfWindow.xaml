@@ -1,0 +1,59 @@
+﻿<Window x:Class="EmbeddedMemoryExplorer.OpenElfWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmbeddedMemoryExplorer"
+        mc:Ignorable="d"
+        Title="Open ELF" Height="200" Width="360" WindowStyle="ToolWindow" Name="_this">
+    <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="27"></RowDefinition>
+            </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Margin="5,0,5,0">ELF file</TextBlock>
+                <TextBox Name="txtElf" Grid.Row="1" Grid.Column="0" Margin="5,0,5,0" TextChanged="onElfPathChanged" 
+                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
+                    Path=ElfPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="1" Margin="0,0,5,0" Click="onSelectElfClick">...</Button>
+            </Grid>
+            
+            
+            <Grid Grid.Row="1" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                 <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                 <TextBlock Margin="5,0,5,0">Linker script file</TextBlock>
+                <TextBox Name="txtScript" Grid.Row="1" Grid.Column="0" Margin="5,0,5,0"  Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
+                    Path=ScriptPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="1"  Margin="0,0,5,0" Click="onSelectScriptClick">...</Button>
+            </Grid>
+        </Grid>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="0,2,10,2" MinWidth="80" Click="onBtnCancelClick">Cancel</Button>
+            <Button Name="btnOk" Margin="0,2,10,2" MinWidth="80" Click="onBtnOkClick">Ok</Button>
+        </StackPanel>
+    </Grid>
+</Window>
