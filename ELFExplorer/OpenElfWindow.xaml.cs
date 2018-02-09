@@ -22,7 +22,7 @@ namespace EmbeddedMemoryExplorer {
     /// </summary>
     public partial class OpenElfWindow : Window, INotifyPropertyChanged
     {
-        private string _elfPath = @"D:\MotionParallaxResearch\NCamera\V05\Software\NettleNetworkTester\Projects\CooCox\Software\Debug\bin\Software.elf";
+        private string _elfPath;
         public string _scriptPath;
 
         public OpenElfWindow() {
