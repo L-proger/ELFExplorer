@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace EmbeddedMemoryExplorer {
     public class NotepadPpEditor : FileEditor
@@ -10,14 +11,32 @@ namespace EmbeddedMemoryExplorer {
 
         public string Language { get; set; } = "cpp";
 
-        public NotepadPpEditor() {
+        public static string FindExecutablePath()
+        {
+            string[] paths = new[] {
+                @"C:\Program Files (x86)\Notepad++\notepad++.exe",
+                @"C:\Program Files\Notepad++\notepad++.exe"
+            };
+
+            foreach (var path in paths)
+            {
+                if (File.Exists(path))
+                {
+                    return path;
+                }
+            }
+            return null;
+        }
+
+        public NotepadPpEditor(string executablePath)
+        {
             FileTypes.Add(new FileExtensionMatch(".c"));
             FileTypes.Add(new FileExtensionMatch(".c++"));
             FileTypes.Add(new FileExtensionMatch(".cpp"));
             FileTypes.Add(new FileExtensionMatch(".cxx"));
             FileTypes.Add(new FileExtensionMatch(".h"));
             FileTypes.Add(new FileExtensionMatch(".hpp"));
-            Path = @"C:\Program Files (x86)\Notepad++\notepad++.exe";
+            Path = executablePath;
         }
 
         public override string GetArguments(Uri file)

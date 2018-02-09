@@ -58,7 +58,11 @@ namespace EmbeddedMemoryExplorer {
             /* Reload(
                 @"D:\MotionParallaxResearch\NCamera\V05\Software\Software\Projects\CooCox\Software\Debug\bin\Software.elf",
                 @"C:/Users/Sergey/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F4xxxx-HAL/LinkerScripts/STM32F439xI_flash.lds");*/
-            FileEditors.Add(new NotepadPpEditor());
+            var executable = NotepadPpEditor.FindExecutablePath();
+            if (!string.IsNullOrEmpty(executable))
+            {
+                FileEditors.Add(new NotepadPpEditor(executable));
+            }
             UpdateTitle();
 
         }
